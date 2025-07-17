@@ -1,0 +1,11 @@
+# CloudFormationTemplateVersion
+# Description
+
+AWSTemplateFormation: '2010-09-09'
+Description: 'Cloundformation template for S3 Bucket'
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'Kayla-S3-Bucket-Yaml'
+
