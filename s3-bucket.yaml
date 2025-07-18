@@ -7,5 +7,5 @@ Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: 'Kayla-S3-Bucket-Yaml'
+      BucketName: 'kayla-s3-bucket-yaml'
 
