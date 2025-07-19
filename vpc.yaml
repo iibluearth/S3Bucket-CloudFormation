@@ -12,7 +12,7 @@ Resources:
       Tags:
           - Key: Name
             Value: MyVPC 
-# Public Subnet in AZ 1
+  # Public Subnet in AZ 1
   PublicSubnet1A:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -23,8 +23,8 @@ Resources:
       Tags:
         - Key: Name
           Value: PublicSubnet1A
-# App Private Subnet in AZ 1
-AppPrivateSubnet1A:
+  # App Private Subnet in AZ 1
+  AppPrivateSubnet1A:
   Type: 'AWS::EC2::Subnet'
   Properties:
     VpcId: !Ref MyVPC
@@ -33,7 +33,7 @@ AppPrivateSubnet1A:
     Tags:
       - Key: Name
         Value: AppPrivateSubnet1A
-# Data Private Subnet in AZ 1 
+  # Data Private Subnet in AZ 1 
   DataPrivateSubnet1A:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -43,8 +43,8 @@ AppPrivateSubnet1A:
       Tags:
         - Key: Name
           Value: DataPrivateSubnet1A
-# Public Subnet in AZ 2
-PublicSubnet2B:
+  # Public Subnet in AZ 2
+  PublicSubnet2B:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcID: !Ref MyVPC
@@ -54,52 +54,52 @@ PublicSubnet2B:
       Tags:
         - Key: Name
           Value: PublicSubnet2B
-# App Private Subnet in AZ 2
-AppPrivateSubnet2B:
+  # App Private Subnet in AZ 2
+  AppPrivateSubnet2B:
      Type: 'AWS::EC2::Subet'
      Properties:
-      VpcId: !Ref MyVPC
-      CidrBlocks: '172.16.5.0/24'
-      AvailabilityZone: !Select [1, !GetAZs '']
-      Tags:
-      - Key: Name
-        Value: AppPrivateSubnet2B
-# Data Private Subnet in AZ 2
-      DataPrivateSubnet2B:
+        VpcId: !Ref MyVPC
+        CidrBlocks: '172.16.5.0/24'
+        AvailabilityZone: !Select [1, !GetAZs '']
+        Tags:
+        - Key: Name
+          Value: AppPrivateSubnet2B
+  # Data Private Subnet in AZ 2
+  DataPrivateSubnet2B:
       Type: 'AWS::EC2::Subnet'
       Properties:
-      VpcId: !Ref MyVPC
-      CidrBlock: '172.16.6.0/24'
-      Availability Zone: !Select [1, !GetAZs '']
-      Tags:
+        VpcId: !Ref MyVPC
+        CidrBlock: '172.16.6.0/24'
+        Availability Zone: !Select [1, !GetAZs '']
+        Tags:
         - Key: Name
           Value: DataPrivateSubnet2B
 
   # Internet Gateway 
-  InternetGateway:
+  InternetGateway: 
     Type: 'AWS::EC2::InternetGateway'
     Properties: 
       Tags:
-        - Key: Name 
-          Value: MyVPC-IGW 
-
+        - Key: Name
+          Value: MyVPC-IGW
+  
   # Attach IGW to the VPC
   AttachGateway:
     Type: 'AWS::EC2::VPCGatewayAttachment'
-    Properties: 
-      VpcId: !Ref MyVPC
+    Properties:
+     VpcId: !Ref MyVPC
       InternetGatewayId: !Ref InternetGateway
 
   # Public Route Tables
-  PublicRouteTable: 
-    Type: 'AWS::EC2:RouteTable'
-    Properties:
-      VpcId: !Ref MyVPC
-      Tags:
-        - Key: Name 
-          Value: PublicRouteTable
+  PublicRouteTable:
+   Type: 'AWS::EC2::RouteTable'
+   Properties:
+    VpcId: !Ref MyVPC
+    Tags:
+      - Key: Name
+        Value: PublicRouteTable
 
-  # Public Routes
+  # Public Routes 
   PublicRoute:
     Type: 'AWS::EC2::Route'
     DependsOn: AttachGateway
@@ -107,17 +107,18 @@ AppPrivateSubnet2B:
       RouteTableId: !Ref PublicRouteTable
       DestinationCidirBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
-  
+
   # Public Subnet 1A Route Table Association
-  PublicSubnet1ARouteTableAssociation:
-    Type: 'AWS::EC2::SubnetRouteTableAssociation'
-    Properties: 
-       SubnetId: !Ref PublicSubnet1A
-        RouteTableId: !Ref PublicRouteTable
+  PublicSubnet1RouteTableAssociation: 
+   Type: 'AWS::EC2::SubnetRouteTableAssociation'
+   Properties:
+     SubnetId: !Ref PublicSubnet1A
+     RouteTableId: !Ref PublicRouteTable
 
   # Public Subnet 2B Route Table Association 
   PublicSubnet2BRouteTableAssociation:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
       SubnetId: !Ref PublicSubnet2B
-      RouteTableId: !Ref PublicRoouteTable   
+      RouteTableId: !Ref PublicRouteTable
+
