@@ -77,7 +77,7 @@ AppPrivateSubnet2B:
 
   # Internet Gateway 
   InternetGateway:
-    Type: 'AW::EC2::InternetGateway'
+    Type: 'AWS::EC2::InternetGateway'
     Properties: 
       Tags:
         - Key: Name 
