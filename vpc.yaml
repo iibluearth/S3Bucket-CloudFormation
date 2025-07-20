@@ -59,7 +59,7 @@ Resources:
      Type: 'AWS::EC2::Subnet'
      Properties:
         VpcId: !Ref MyVPC
-        CidrBlocks: '172.16.5.0/24'
+        CidrBlock: '172.16.5.0/24'
         AvailabilityZone: !Select [1, !GetAZs '']
         Tags:
         - Key: Name
@@ -108,9 +108,17 @@ Resources:
       DestinationCidirBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
 
-  # Public Subnet Association 
-  PublicSubnet1ARouteTableAssociation: 
+  # Public Subnet 1A Route Table Association
+  PublicSubnet1ARouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties: 
+      SubnetId: !Ref PublicSubnet1A
+      RouteTableId: !Ref PublicRouteTable
+
+  # Public Subnet 2B Route Table Association
+  PublicSubnet2BRouteTableAssociation:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
-      SubnetId: !Ref PublicSubnet2A
+      SubnetId: !Ref PublicSubnet2B
       RouteTableId: !Ref PublicRouteTable
+  
