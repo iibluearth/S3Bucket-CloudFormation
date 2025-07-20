@@ -100,12 +100,12 @@ Resources:
         Value: PublicRouteTable
 
   # Public Routes 
-  PublicRouteTable:
+  PublicRoute:
     Type: 'AWS::EC2::Route'
     DependsOn: AttachGateway
     Properties:
       RouteTableId: !Ref PublicRouteTable
-      DestinationCidirBlock: 0.0.0.0/0
+      DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
 
   # Public Subnet 1A Route Table Association
@@ -115,10 +115,4 @@ Resources:
       SubnetId: !Ref PublicSubnet1A
       RouteTableId: !Ref PublicRouteTable
 
-  # Public Subnet 2B Route Table Association
-  PublicSubnet2BRouteTableAssociation:
-    Type: 'AWS::EC2::SubnetRouteTableAssociation'
-    Properties:
-      SubnetId: !Ref PublicSubnet2B
-      RouteTableId: !Ref PublicRouteTable
   
