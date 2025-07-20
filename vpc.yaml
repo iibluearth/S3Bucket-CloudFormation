@@ -88,7 +88,7 @@ Resources:
     Type: 'AWS::EC2::VPCGatewayAttachment'
     Properties:
      VpcId: !Ref MyVPC
-      InternetGatewayId: !Ref InternetGateway
+     InternetGatewayId: !Ref InternetGateway
 
   # Public Route Tables
   PublicRouteTable:
@@ -109,7 +109,7 @@ Resources:
       GatewayId: !Ref InternetGateway
 
   # Public Subnet 1A Route Table Association
-  PublicSubnet1RouteTableAssociation: 
+  PublicSubnet1ARouteTableAssociation: 
    Type: 'AWS::EC2::SubnetRouteTableAssociation'
    Properties:
      SubnetId: !Ref PublicSubnet1A
