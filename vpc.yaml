@@ -18,7 +18,7 @@ Resources:
     Properties:
       VpcId: !Ref MyVPC
       CidrBlock: '172.16.0.0/24'
-      AvailabilityZone: !Select (0, !GetAZs '')
+      AvailabilityZone: !Select [0, !GetAZs '']
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -29,7 +29,7 @@ Resources:
     Properties:
       VpcId: !Ref MyVPC
       CidrBlock: '172.16.2.0/24'
-      AvailabilityZone: !Select (0, !GetAZs '')
+      AvailabilityZone: !Select [0, !GetAZs '']
       Tags:
         - Key: Name
           Value: AppPrivateSubnet1A
@@ -39,7 +39,7 @@ Resources:
     Properties:
       VpcId: !Ref MyVPC
       CidrBlock: '172.16.3.0/24'
-      AvailabilityZone: !Select (0, !GetAZs '') 
+      AvailabilityZone: !Select [0, !GetAZs ''] 
       Tags:
         - Key: Name
           Value: DataPrivateSubnet1A
@@ -49,7 +49,7 @@ Resources:
     Properties:
       VpcId: !Ref MyVPC
       CidrBlock: '172.16.4.0/24'
-      AvailabilityZone: !Select (1, !GetAZs '')
+      AvailabilityZone: !Select [1, !GetAZs '']
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -60,7 +60,7 @@ Resources:
      Properties:
         VpcId: !Ref MyVPC
         CidrBlocks: '172.16.5.0/24'
-        AvailabilityZone: !Select (1, !GetAZs '')
+        AvailabilityZone: !Select [1, !GetAZs '']
         Tags:
         - Key: Name
           Value: AppPrivateSubnet2B
@@ -70,7 +70,7 @@ Resources:
       Properties:
         VpcId: !Ref MyVPC
         CidrBlock: '172.16.6.0/24'
-        AvailabilityZone: !Select (1, !GetAZs '')
+        AvailabilityZone: !Select [1, !GetAZs '']
         Tags:
         - Key: Name
           Value: DataPrivateSubnet2B
